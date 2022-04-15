@@ -3,6 +3,8 @@ import time
 from subprocess import *
 import requests
 import json
+import phonenumbers
+from phonenumbers import carrier, geocoder, timezone
 
 def options():
     osint()
@@ -13,9 +15,10 @@ def osint():
         oslnt = input("ip or email: ")
         if oslnt == 'ip':
             clear()
-            ip = input("ip of target:")
-            iplook = requests.get('https://ipapi.co/'+ip+'/json/')
-            print(iplook)
+            phoneNumber = input("Enter phone number with country code(+1): ")
+            phoneNumber = phonenumbers.parse(phoneNumber)
+            print("Timezone:",timezone.time_zones_for_number(phoneNumber))
+            print("Carrier:",carrier.name_for_number(phoneNumber, "en"))
 
 def dos():
     if user == '2':
