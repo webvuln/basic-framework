@@ -19,7 +19,9 @@ def osint():
             clear()
             ip = input("ip of target: ")
             iplook = requests.get('https://ipapi.co/'+ip+'/json/')
-            print(iplook.content)
+            response = urlopen(iplook)
+            data_json = json.loads(response.read())
+            print(data_json)
         if oslnt == 'phone':
             clear()
             phoneNumber = input("Enter phone number with country code(+1): ")
